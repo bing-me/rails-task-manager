@@ -17,6 +17,18 @@ class TasksController < ApplicationController
     @tasks = Task.all
   end
 
+  def edit
+    @task = Task.find(params[:id])
+  end
+
+  def update
+    @task = Task.find(params[:id])
+    @task.update!(task_params)
+    # raise
+    # No need for app/views/tasks/update.html.erb
+    redirect_to task_path(@task)
+  end
+
   private
 
   def task_params
